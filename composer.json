@@ -1,0 +1,30 @@
+{
+  "name": "duva/duva",
+  "description": "Official Duva client library (transactional email API hosted in Canada). Name reserved: not released yet.",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://duva.ca",
+  "keywords": [
+    "duva",
+    "email",
+    "transactional-email",
+    "api"
+  ],
+  "require": {
+    "php": ">=8.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Duva\\": "src/"
+    }
+  },
+  "support": {
+    "source": "https://github.com/duva-mail/duva-php",
+    "docs": "https://duva.ca/en/docs"
+  },
+  "authors": [
+    {
+      "name": "9573-4562 Québec inc."
+    }
+  ]
+}
