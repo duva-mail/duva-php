@@ -1,5 +1,5 @@
 {
-  "name": "duva/duva",
+  "name": "duva-mail/duva",
   "description": "Official Duva client library (transactional email API hosted in Canada). Name reserved: not released yet.",
   "type": "library",
   "license": "MIT",
