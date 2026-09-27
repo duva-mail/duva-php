@@ -1,6 +1,6 @@
 {
   "name": "duva-mail/duva",
-  "description": "Official Duva client library (transactional email API hosted in Canada). Name reserved: not released yet.",
+  "description": "Official Duva client library (transactional email API hosted in Canada).",
   "type": "library",
   "license": "MIT",
   "homepage": "https://duva.ca",
@@ -8,14 +8,31 @@
     "duva",
     "email",
     "transactional-email",
-    "api"
+    "api",
+    "webhooks"
   ],
   "require": {
-    "php": ">=8.2"
+    "php": ">=8.2",
+    "psr/http-client": "^1.0",
+    "psr/http-factory": "^1.0",
+    "psr/http-message": "^1.1 || ^2.0"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^7.8",
+    "phpunit/phpunit": "^11.0",
+    "phpstan/phpstan": "^2.0"
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "Provides the default PSR-18 HTTP client and PSR-17 factories when you don't inject your own."
   },
   "autoload": {
     "psr-4": {
       "Duva\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Duva\\Tests\\": "tests/"
     }
   },
   "support": {
@@ -26,5 +43,13 @@
     {
       "name": "9573-4562 Québec inc."
     }
-  ]
+  ],
+  "scripts": {
+    "test": "phpunit --testsuite unit",
+    "test:conformance": "phpunit --testsuite conformance",
+    "stan": "phpstan analyse"
+  },
+  "config": {
+    "sort-packages": true
+  }
 }

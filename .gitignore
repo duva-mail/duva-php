@@ -1,0 +1,10 @@
+/vendor/
+/conformance/
+# Libraries conventionally don't commit composer.lock (unlike the other duva-mail client
+# libraries' lockfiles): consumers resolve their own versions; this repo has no "deployed
+# environment" of its own to reproduce.
+composer.lock
+.phpunit.cache/
+.phpunit.result.cache
+composer.phar
+.DS_Store
