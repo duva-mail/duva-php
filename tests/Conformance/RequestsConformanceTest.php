@@ -33,6 +33,8 @@ final class RequestsConformanceTest extends TestCase
             'sendMessage' => static fn (Client $duva, array $input) => $duva->messages->send([
                 'from' => $input['from_'],
                 'to' => $input['to'],
+                'cc' => $input['cc'] ?? null,
+                'bcc' => $input['bcc'] ?? null,
                 'subject' => $input['subject'],
                 'text' => $input['text'] ?? null,
                 'tags' => $input['tags'] ?? null,

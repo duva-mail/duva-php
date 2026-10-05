@@ -26,6 +26,23 @@ $message = $duva->messages->send([
 echo $message->id, ' ', $message->status; // "queued": always asynchronous
 ```
 
+### To, Cc and Bcc
+
+`to`, `cc` and `bcc` take addresses or `Name <address>`. Every copy shows all the `to` and all the
+`cc`; a `bcc` address appears only on its own copy. The three lists together count against your
+plan's recipient maximum.
+
+```php
+$duva->messages->send([
+    'from' => 'Example <notifications@example.com>',
+    'to' => ['Jean Tremblay <jean@example.org>'],
+    'cc' => ['accounting@example.org'],
+    'bcc' => ['archive@example.com'],
+    'subject' => 'Your order',
+    'text' => 'Thank you for your order.',
+]);
+```
+
 ## Reading events and pagination
 
 ```php

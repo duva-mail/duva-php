@@ -25,10 +25,14 @@ final readonly class MessagesResource
      * only that the message was validated. Read the outcome with `messages->get()`,
      * `events->list()`, or a webhook.
      *
-     * `$params` (all string keys): `from`, `to` (string[]), `subject`, `html`, `text`, `tags`
-     * (string[]), `tracking` (`['opens' => bool, 'clicks' => bool]`), `reply_to`, `headers`
+     * `$params` (all string keys): `from`, `to` (string[]), `cc` (string[]), `bcc` (string[]), `subject`,
+     * `html`, `text`, `tags` (string[]), `tracking` (`['opens' => bool, 'clicks' => bool]`), `reply_to`, `headers`
      * (string[string]), `metadata` (string[string]), `attachments` (Attachment[]),
      * `idempotency_key`.
+     *
+     * `to`, `cc` and `bcc` take addresses or `Name <address>`; together they count against the plan's
+     * recipient maximum. Every copy shows all the `to` and all the `cc`; a `bcc` address appears only
+     * on its own copy.
      *
      * `idempotency_key`: unique per domain. A UUID is generated when omitted (see
      * `docs/bibliotheques-clientes.md` section 3.3): a network-level retry of the SAME call can
@@ -86,8 +90,13 @@ final readonly class MessagesResource
         $body = [
             'from' => $params['from'],
             'to' => $params['to'],
-            'subject' => $params['subject'],
         ];
+        foreach (['cc', 'bcc'] as $field) {
+            if (isset($params[$field])) {
+                $body[$field] = $params[$field];
+            }
+        }
+        $body['subject'] = $params['subject'];
         foreach (['html', 'text', 'tags', 'reply_to', 'headers', 'metadata'] as $field) {
             if (isset($params[$field])) {
                 $body[$field] = $params[$field];
